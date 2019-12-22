@@ -1,0 +1,159 @@
+
+<!doctype html>
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="cmn.css" />
+</head>
+<body>
+<div>
+    <span class="theme" url="wt.css">WT</span>
+    <span class="theme" url="bt.css">BT</span>
+</div>
+
+<headPart style="text-align: center;">
+    <h2>Страница-отчет по дисциплине Интернет-технологии</h2>
+    <div>Меркулов И.А.</div>
+    <div>ИДМ-19-01</div>
+    <div>
+        <span class="lab_nav" nav="lab1">Лабораторная работа №1</span>
+        <span class="lab_nav" nav="lab2">Лабораторная работа №2</span>
+        <span class="lab_nav" nav="lab3">Лабораторная работа №3</span>
+    </div>
+</headPart>
+
+<contentPart style="display: flex; align-items: center; justify-content: center;">
+
+    <div class="textik" id="lab1" style="visibility: collapse;">
+        <h2>Лабораторная работа №1</h2>
+        <div>Регистрация на <a href="https://github.com/">GitHub</a></div>
+        <div>Подключение к общему репозиторию</div>
+        <div>Создание личной <a href="https://github.com/merkuloffyt">страницы</a></div>
+        <div>Разработка персональной <a href="https://merkuloffyt.github.io/technical">страницы-отчёта</a> с использованием веб-технологий</div>
+    </div>
+
+    <div class="textik" id="lab2" style="visibility: collapse;">
+        <h2>Лабораторная работа №2</h2>
+        <h3>Задание:</h3>
+        <div>
+            1)Сформировать команду для разработки веб-приложения "Хранилище файлов" и распределить роли.<br>
+            2)Разработать макет страницы веб-приложения, продумать дизайн и UI.<br>
+            3)Продумать бекенд составляющую; написать оптимизированную серверную логику на Java и Spring'е.<br>В конечном итоге сервер должен предоставлять пользователям быструю и секьюрную работу с сайтом.<br>
+            4)Реализовать фронтенд на React.js и JavaScript.<br>
+            5)Захостить всё это дело локально или на nginx.<br>
+        </div>
+        <div>
+            <h2>Сформирована команда:</h2>
+            <h3>Команда "ТРИУМВИРАТ"</h3>
+            <h3>ИДМ-19-01</h3>
+            <div>Габдуллин Н.А.</div>
+            <div>Шатохин А.С.</div>
+            <div>Шпакодраев Д.М.</div>
+            <div>Меркулов И.А.</div>
+        </div>
+    </div>
+    <div class="textik" id="lab3" style="visibility: collapse;">
+        <div>
+            <div>
+                <h2>Лабораторная работа №3</h2>
+                <div>Задачи:</div>
+                <ul>
+                    <li>Выполнить задание в Cisco Packet Tracer</li>
+                    <li>Оформить отчет на своей странице</li>
+                </ul>
+            </div>
+            <div class="slider">
+                <div class="item">
+                    <div><i><b>1. Выбран вариант 2<br></b></i></div>
+                    <img src="Var.png">
+                </div>
+                <div class="item">
+                    <div><i><b>
+                        2. Создана сеть из двух хостов и свитча (коммутатора)<br>
+                        Добавлена LAN A: subnet - 10.1.255.0, mask - 255.255.255.240<br></i></b>
+                    </div>
+                    <img src="1.gif">
+                </div>
+                <div class="item">
+                    <div><i><b>
+                        3. Создана сеть из четырех хостов и двух свитчей (коммутаторов)<br>
+                        Добавлена LAN B: subnet - 10.1.254.0, mask - 255.255.252.0<br>
+                        Такая сеть не работает, поскольку для объединения разных сетей нужен роутер (маршрутизатор)<br></i></b>
+                    </div>
+                    <img src="2.gif">
+                </div>
+                <div class="item">
+                    <div><i><b>
+                        4. Создана сеть из четырех хостов, двух свитчей (коммутаторов) и роутера (маршрутизатора)<br></i></b>
+                    </div>
+                    <img src="3.gif">
+                </div>
+                <div class="item">
+                    <div><i><b>
+                        5. К существующей сети добавлена ещё одна сеть, состоящая из свитча (коммутатора) и хоста<br>
+                        Добавлена LAN C: subnet - 10.1.253.0, mask - 255.255.248.0<br></i></b>
+                    </div>
+                    <img src="4.gif">
+                </div>
+
+                <a class="prev" onclick="prevSlide()">&#10094;</a>
+                <a class="next" onclick="nextSlide()">&#10095;</a>
+            </div>
+        </div>
+        </span>
+
+</contentPart>
+
+<script>
+    var head;
+    var link;
+
+    $(function(){
+        $(".textik").hide();
+        $(".textik").css("visibility", "visible");
+
+        head = document.getElementsByTagName("head")[0];
+        link = document.createElement("link");
+        link.rel = "stylesheet";
+        link.type = "text/css";
+        head.appendChild(link);
+
+        link.href = "styles/wt.css";
+    });
+
+    $(".lab_nav").click(function (){
+        $(".textik").hide();
+        $("#"+this.getAttribute("nav")).fadeIn();
+    });
+
+    $(".theme").click(function (){
+        link.href = "styles/" + this.getAttribute("url");
+    })
+
+    var sliderIndex = 1;
+    showSlides(sliderIndex);
+
+    function nextSlide() { showSlides(sliderIndex += 1);}
+    function prevSlide() { showSlides(sliderIndex -= 1);}
+    function currentSlide(n) { showSlides(sliderIndex = n); }
+
+    function showSlides(n){
+        var i;
+        var slides = document.getElementsByClassName("item");
+        var dots = document.getElementsByClassName("slider-dots_item");
+        if (n > slides.length) sliderIndex = 1;
+        if (n < 1) sliderIndex = slides.length;
+
+        for (i = 0; i < slides.length; i++)
+            slides[i].style.display = "none";
+        for (i = 0; i < dots.length; i++)
+            dots[i].className = dots[i].className.replace(" active", "");
+
+        slides[sliderIndex - 1].style.display = "block";
+        dots[sliderIndex - 1].className += " active";
+    }
+
+</script>
+
+</body>
+</html>
